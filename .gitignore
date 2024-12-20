@@ -9,6 +9,7 @@
 .idea/**/tasks.xml
 .idea/**/dictionaries
 .idea/**/shelf
+.idea
 
 # Sensitive or high-churn files
 .idea/**/dataSources/
@@ -60,3 +61,5 @@ hs_err_pid*
 # .m2 folder in the home directory is also often added to global gitignore
 # but this one is specific to project dependencies if any
 .m2/repository/
+
+*.iml
