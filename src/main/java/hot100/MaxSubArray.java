@@ -13,6 +13,13 @@ package main.java.hot100;
  */
 public class MaxSubArray {
 
+    /**
+     * 贪心 遍历元素 记录以当前元素为结尾的连续子数组的最大值 找出最大
+     * 每次遍历时 如果之前的最大值大于0 那么加上当前元素 最为以当前元素为结尾的最大数
+     * 否则就取当前元素值为最大的连续子数组的和
+     * @param nums
+     * @return
+     */
     public int maxSubArray(int[] nums) {
 
         int max = nums[0];
@@ -36,6 +43,15 @@ public class MaxSubArray {
         return max;
     }
 
+    /**
+     * 动态规划
+     * f(i) = 以i结尾的最大数
+     * f(0) = nums[0]
+     * 每次遍历到元素i时，判断当前元素加上先前的最大值和不加上先前最大值哪个大，取大的作为当前元素的最大值
+     * 然后用一个临时数 记录一路遍历过来的数 最终取最大数
+     * @param nums
+     * @return
+     */
     public int maxSubArray2(int[] nums) {
 
         int preMaxSum = 0;
