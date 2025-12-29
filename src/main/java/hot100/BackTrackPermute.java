@@ -10,10 +10,9 @@ import java.util.stream.Collectors;
  * @date 2025/12/27 下午9:11
  * @description 全排列
  * 给定一个不含重复数字的数组 nums ，返回其 所有可能的全排列 。你可以 按任意顺序 返回答案。
- *
+ * <p>
  * 输入：nums = [1,2,3]
  * 输出：[[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
- *
  */
 public class BackTrackPermute {
 
@@ -50,13 +49,57 @@ public class BackTrackPermute {
         return ans;
     }
 
+
+    // 使用交换数组位置方式
+    public List<List<Integer>> permute2(int[] nums) {
+
+        List<List<Integer>> list = new ArrayList<>();
+
+        helper(nums,0,list);
+        return list;
+    }
+
+    private void helper(int[] nums, int i, List<List<Integer>> list) {
+
+        if (i == nums.length) {
+            List<Integer> collect = Arrays.stream(nums).boxed().collect(Collectors.toList());
+            list.add(collect);
+            return;
+        } else {
+
+            // 交换数据位置
+            for (int j = i; j < nums.length; j++) {
+                swap(nums, i, j);
+                helper(nums, i + 1, list);
+                swap(nums, i, j);
+            }
+        }
+
+    }
+
+    private void swap(int[] nums, int i1, int i2) {
+        if (i1 != i2) {
+            int temp = nums[i2];
+            nums[i2] = nums[i1];
+            nums[i1] = temp;
+        }
+    }
+
+
     public static void main(String[] args) {
 
         BackTrackPermute b = new BackTrackPermute();
-        int[] nums = {1,2,3};
+        int[] nums = {1, 2, 3};
         List<List<Integer>> permute = b.permute(nums);
         System.out.println(permute.size());
         System.out.println("over");
+
+        List<List<Integer>> lists = b.permute2(nums);
+        for (List<Integer> list : lists) {
+            String string = Arrays.toString(list.toArray());
+            System.out.println(string);
+        }
+
 
     }
 
